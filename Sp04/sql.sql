@@ -1,12 +1,12 @@
-CREATE TABLE student (
-  sNum VARCHAR2(20),
-  sId VARCHAR2(20),
-  sPw VARCHAR2(20),
-  sName VARCHAR2(20),
-  sAge NUMBER(3),
-  sGender VARCHAR2(20),
-  sMajor VARCHAR2(80)
+CREATE TABLE student(
+   sNum varchar2(20),
+   sId varchar2(20),
+   sPw varchar2(20),
+   sName varchar2(20),
+   sAge number(3),
+   sGender varchar2(20),
+   sMajor varchar2(80)
 );
-
 select * from student;
 delete from student;
+drop table student;
