@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+		
+		<bean class="com.ezen.member.dto.DataBaseConnectionInfo" id="dbconinfo1">
+		        <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+                <property name="driver" value="oracle.jdbc.drvier.OracleDriver"/>
+                <property name="id" value="scott"/>
+                <property name="pw" value="tiger"/>
+		</bean>		
+					
+		<bean class= "com.ezen.member.dao.StudebtDao" id="studentdao">
+		      <constructor-arg ref="dbconinfo1"></constructor-arg>
+		</bean>
+</beans>		
