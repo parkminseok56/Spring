@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.ezen.member.dto.DataBaseConnectionInfo;
 import com.ezen.member.dto.Student;
@@ -74,6 +75,89 @@ public void insertStudent(Student std) {
     } catch (SQLException e) {e.printStackTrace();
     } finally {      close();  }                
 }
+
+public ArrayList<Student> selectAllStudent() {
+	ArrayList<Student> list = new  ArrayList<Student>();
+	
+	String sql = "select * from student";
+	con = getConnection();
+	try {
+		pstmt = con.prepareStatement(sql);
+		rs = pstmt.executeQuery();
+		while( rs.next() ) {
+			Student std = new Student(
+					rs.getString("sNum"),
+					rs.getString("sId"),
+					rs.getString("sPw"), 
+					rs.getString("sName"), 
+					rs.getInt("sAge"),	
+					rs.getString("sGender"), 
+					rs.getString("sMajor") 
+			);  // 생성자 함수를 이용하여 객체 생성
+			list.add(std);
+		}
+	} catch (SQLException e) {e.printStackTrace();
+	} finally { close();  }
+	
+	return  list;
+}
+
+public Student selectOneStudent(String ids) {
+	Student std = null;
+	String sql = "select * from student where sId=?";
+	con = getConnection();
+	try {
+		pstmt = con.prepareStatement(sql);
+		pstmt.setString(1, ids);
+		rs = pstmt.executeQuery();
+		if( rs.next() ) {
+			std = new Student( 
+					rs.getString("sNum"), 
+					rs.getString("sId"),
+					rs.getString("sPw"), 
+					rs.getString("sName"),
+					rs.getInt("sAge"), 
+					rs.getString("sGender"), 
+					rs.getString("sMajor")	);
+		}
+	} catch (SQLException e) {e.printStackTrace();
+	} finally { close(); }	
+	return std;
+}
+
+
+
+
+public void UpdateStudent(Student std) {
+	
+	String sql = "update student set sPw=?, sName=?, " + 
+			" sAge=?, sGender=?, sMajor=? where sId=?";
+	con = getConnection();
+	try {
+		pstmt = con.prepareStatement(sql);
+		pstmt.setString(1,  std.getsPw());
+		pstmt.setString(2,  std.getsName());
+		pstmt.setInt(3,  std.getsAge());
+		pstmt.setString(4,  std.getsGender());   
+		pstmt.setString(5,  std.getsMajor());
+		pstmt.setString(6,  std.getsId());    
+		
+		pstmt.executeUpdate();
+		
+	} catch (SQLException e) {e.printStackTrace();
+	} finally { close(); }
+	
+	
+}
+
+
+
+
+
+
+
+
+
 	
 
 
