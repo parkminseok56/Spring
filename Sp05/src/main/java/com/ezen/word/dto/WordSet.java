@@ -5,30 +5,13 @@ public class WordSet {
 	private String wordKey;
 	private String wordValue;
 	
-
-
-
 	public WordSet(String wordKey,String wordValue) {
 		super();
 		this.wordKey = wordKey;
 		this.wordValue = wordValue;
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	
 	public String getWordKey() {
 		return wordKey;
 	}
@@ -41,7 +24,5 @@ public class WordSet {
 	public void setWordValue(String wordValue) {
 		this.wordValue = wordValue;
 	}
-	
-	
 	
 }
