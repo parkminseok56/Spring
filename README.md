@@ -147,10 +147,47 @@ public class UserService {
 
    - @Component
      -  클래스를 스프링의 빈(Bean)으로 등록합니다.
+       
+--------------------------------------------------------------------------------
     
    - @Autowired
-     - 의존성 주입을 설정할 때 사용되며, 해당 필드나 메소드 파라미터의 값을 스프링 컨테이너가 자동으로 주입합니다.
-    
+      - @Autowired 어노테이션은 주입할 빈을 자동으로 찾아서 해당 타입의 빈을 주입합니다.
+        
+     - 만약 같은 타입의 빈이 여러 개 존재하는 경우, 스프링은 자동으로 해당 타입의 빈을 찾아서 주입하려고 시도합니다.
+       
+     -  @Autowired는 주로 타입에 기반한 의존성 주입에 사용됩니다.
+       
+   - @Qualifier
+     - @Qualifier 어노테이션은 @Autowired와 함께 사용되며, 여러 빈 중에서 특정한 빈을 선택하여 주입할 때 사용됩니다.
+     
+     - @Qualifier 어노테이션을 사용할 때는 빈의 이름(또는 Qualifier로 지정한 이름)을 명시하여 어떤 빈을 주입할지 지정해야 합니다.
+     
+     -  @Qualifier는 주로 같은 타입의 여러 빈 중에서 특정한 빈을 선택하는 경우에 사용됩니다.
+
+       ex)
+     
+     ``` java
+     
+          @Service
+          public class MyService {
+              private final MyRepository myRepository;
+          
+              @Autowired
+              @Qualifier("myRepositoryImpl") // 여기서 "myRepositoryImpl"은 빈의 이름
+              public MyService(MyRepository myRepository) {
+                  this.myRepository = myRepository;
+              }
+          }
+     ```
+ 
+- 둘의 차이점
+  
+  @Autowired는 주입할 빈을 타입을 기반으로 자동으로 선택하고,
+   
+  @Qualifier는 같은 타입의 빈 중에서 특정한 빈을 선택할 때 사용됩니다. 두 어노테이션을 조합하여 원하는 의존성을 주입할 수 있습니다.
+ 
+--------------------------------------------------------------------------------
+
    - @Controller, @Service, @Repository
      - 각각 웹 애플리케이션의 컨트롤러, 서비스, 레포지토리 계층을 나타냅니다.
   
@@ -165,8 +202,7 @@ public class UserService {
    - @Value
     -  프로퍼티 값을 주입받을 때 사용되며, 주로 외부 설정 파일에서 값을 가져와서 사용합니다.
     
-   - @Qualifier
-     - 여러 개의 동일한 타입의 빈 중에서 어떤 빈을 주입할지를 지정할 때 사용됩니다.
+   
     
    - @Transactional
      - 트랜잭션 관리를 설정할 때 사용되며, 해당 메소드가 트랜잭션 경계 내에서 실행되도록 합니다.
