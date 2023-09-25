@@ -269,6 +269,13 @@ public class UserService {
 
 스프링 애플리케이션은 보통 웹 애플리케이션의 경우 웹 애플리케이션 컨텍스트(Web Application Context)를 구성하는 것으로 시작합니다. 
 
+  - ServletContext란:
+  
+    하나의 서블릿이 서블릿 컨테이너와 통신하기 위해서 사용되어지는 메서드들을 가지고 있는 클래스가 바로 ServletContext다.
+    
+    여러 서블릿에서 공유할 수 있는 정보를 담는 객체이다.
+![ServletContext](https://github.com/parkminseok56/Spring/assets/133790403/cd32c17f-0d96-452d-b3d1-3be0965b26a5)
+
 스프링의 ContextLoaderListener나 DispatcherServlet과 같은 서블릿을 웹 애플리케이션의 web.xml 파일에 등록하여 웹 애플리케이션 컨텍스트를 초기화합니다.
 
 - 2. Bean 정의와 설정 로딩
