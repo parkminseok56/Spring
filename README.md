@@ -56,6 +56,37 @@
         (Controller 내부에는 Model과 View의 코드가 있을 수 있음.)
       * 5.View가 Model로부터 데이터를 받을 때, 반드시 Controller에서 받아야함.
 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+### ModelAndView
+
+ModelAndView는 스프링(Spring) 웹 애플리케이션에서 사용되는 객체로, 컨트롤러에서 처리한 데이터 및 뷰 정보를 함께 저장하는 데 사용됩니다. 
+주로 컨트롤러에서 처리한 결과 데이터를 뷰에 전달하고, 뷰 이름을 지정하는 데에 활용됩니다.
+
+- ModelAndView 객체의 주요 구성 요소
+  - Model: ModelAndView 객체 내에 데이터를 저장하는 데 사용됩니다. 데이터는 키-값 쌍 형태로 저장되며, 뷰에 전달되어 렌더링할 때 사용됩니다.
+   
+  - View Name: 보여줄 뷰의 이름을 지정하는 데 사용됩니다. 뷰 이름은 뷰 리졸버(View Resolver)를 통해 실제 뷰 템플릿을 찾아 렌더링하는 데 사용됩니다.
+
+주로 스프링 컨트롤러 메서드에서 ModelAndView 객체를 반환하여 처리한 결과 데이터와 뷰 정보를 함께 반환합니다.
+
+- 예시
+
+```
+@Controller
+public class MyController {
+
+    @GetMapping("/example")
+    public ModelAndView handleRequest() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("exampleView"); // 뷰 이름 설정
+        modelAndView.addObject("message", "Hello, World!"); // 데이터 저장
+        return modelAndView;
+    }
+}
+```
+
+
+
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
